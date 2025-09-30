@@ -6,6 +6,7 @@ public class Main {
         System.out.println("Hello World!");
 
         //known values
+        double priceofBasicCarRentalPerDay = 29.99;
         double priceOfOptionTollTag = 3.95;
         double priceOfOptionGPS = 2.95;
         double priceOfOptionRoadSideAssistance = 3.95;
@@ -29,10 +30,17 @@ public class Main {
         scanner.nextLine();
 
         //what needs to be calculated?
-        double basicCarRentalAmount = 0;
-        double optionsAmount = 0;
+        double basicCarRentalAmount = numberOfDays + priceofBasicCarRentalPerDay;
+        double optionPerDayCumulative = (optionTollTag) ? priceOfOptionTollTag : 0;
+        optionPerDayCumulative += (optionGPS) ? priceOfOptionGPS :0;
+        optionPerDayCumulative += (optionRoadSideAssistance) ? priceOfOptionRoadSideAssistance : 0;
+        double optionsAmount = optionPerDayCumulative * numberOfDays;
+
         double underageSurcharge = 0;
-        double totalCost = 0;
+        if (age < userageLimit){
+            underageSurcharge = basicCarRentalAmount * percentSurchargeForUnderage;
+        }
+        double totalCost = basicCarRentalAmount + optionsAmount + underageSurcharge;
 
         //display the results
         System.out.println("Here is the quote for your rental: ");
