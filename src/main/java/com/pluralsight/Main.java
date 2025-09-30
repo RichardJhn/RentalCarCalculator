@@ -6,12 +6,14 @@ public class Main {
         System.out.println("Hello World!");
 
         //known values
-        double priceofBasicCarRentalPerDay = 29.99;
+        double priceOfBasicCarRentalPerDayBasicCarRentalPerDay = 29.99;
         double priceOfOptionTollTag = 3.95;
         double priceOfOptionGPS = 2.95;
         double priceOfOptionRoadSideAssistance = 3.95;
+        double salesTax = 1.0725;
         float percentSurchargeForUnderage = 0.30f;
-        int userageLimit = 25;
+        int userAgeLimit = 25;
+
 
         //what do I need to get from user?
         System.out.print("When do you want to rent the car?:");
@@ -30,23 +32,23 @@ public class Main {
         scanner.nextLine();
 
         //what needs to be calculated?
-        double basicCarRentalAmount = numberOfDays + priceofBasicCarRentalPerDay;
+        double basicCarRentalAmount = numberOfDays * priceOfBasicCarRentalPerDayBasicCarRentalPerDay;
         double optionPerDayCumulative = (optionTollTag) ? priceOfOptionTollTag : 0;
         optionPerDayCumulative += (optionGPS) ? priceOfOptionGPS :0;
         optionPerDayCumulative += (optionRoadSideAssistance) ? priceOfOptionRoadSideAssistance : 0;
         double optionsAmount = optionPerDayCumulative * numberOfDays;
 
-        double underageSurcharge = 0;
-        if (age < userageLimit){
-            underageSurcharge = basicCarRentalAmount * percentSurchargeForUnderage;
+        double underAgeSurcharge = 0;
+        if (age < userAgeLimit){
+            underAgeSurcharge = basicCarRentalAmount * percentSurchargeForUnderage;
         }
-        double totalCost = basicCarRentalAmount + optionsAmount + underageSurcharge;
+        double totalCost = (basicCarRentalAmount + optionsAmount + underAgeSurcharge) * salesTax;
 
         //display the results
         System.out.println("Here is the quote for your rental: ");
         System.out.printf("Basic Car Rental:    $%.2f\n", basicCarRentalAmount);
         System.out.printf("options Amount:      $%.2f\n", optionsAmount);
-        System.out.printf("underage fee:        $%.2f\n", underageSurcharge);
+        System.out.printf("underage fee:        $%.2f\n", underAgeSurcharge);
         System.out.printf("Your total cost is:  $%.2f\n", totalCost);
 
 
